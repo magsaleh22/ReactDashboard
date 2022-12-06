@@ -97,7 +97,7 @@ const Editor = () => {
         title="Markdown Editor"
         subtitle="write your markdown text and preview it into HTML"
       />
-            <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between"  style={{ margin:"auto", height:"85vh", padding:"20px"}}>
         {/* CALENDAR SIDEBAR  flex="row shrink width"*/}
         <Box
           flex="1 1 20%"
@@ -106,30 +106,33 @@ const Editor = () => {
           borderRadius="4px"
         >
           <Typography variant="h5">Mardown Editor</Typography>
-      <main>
-        {notes.length > 0 ? (
-          <Split sizes={[30, 70]} direction="horizontal" className="split">
-            <Sidebar
-              notes={notes}
-              currentNote={findCurrentNote()}
-              setCurrentNoteId={setCurrentNoteId}
-              newNote={createNewNote}
-              delNote={deleteNote}
-            />
-            {currentNoteId && notes.length > 0 && (
-              <EditorComp currentNote={findCurrentNote()} updateNote={updateNote} />
+          <main>
+            {notes.length > 0 ? (
+              <Split sizes={[20, 80]} direction="horizontal" className="split">
+                <Sidebar
+                  notes={notes}
+                  currentNote={findCurrentNote()}
+                  setCurrentNoteId={setCurrentNoteId}
+                  newNote={createNewNote}
+                  delNote={deleteNote}
+                />
+                {currentNoteId && notes.length > 0 && (
+                  <EditorComp
+                    currentNote={findCurrentNote()}
+                    updateNote={updateNote}
+                  />
+                )}
+              </Split>
+            ) : (
+              <div className="no-notes">
+                <h1>You have no notes</h1>
+                <button className="first-note" onClick={createNewNote}>
+                  Create one now
+                </button>
+              </div>
             )}
-          </Split>
-        ) : (
-          <div className="no-notes">
-            <h1>You have no notes</h1>
-            <button className="first-note" onClick={createNewNote}>
-              Create one now
-            </button>
-          </div>
-        )}
-      </main>
-      </Box>
+          </main>
+        </Box>
       </Box>
     </Box>
   );
